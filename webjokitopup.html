@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REYSTORE | BLOX FRUITS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --accent: #00f2ff; --bg: #020617; --card: #0f172a; }
+        body { background: var(--bg); color: white; font-family: 'Plus Jakarta Sans', sans-serif; padding-bottom: 100px; }
+        .page-view { display: none; }
+        .page-view.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .item-card { 
+            background: var(--card); border: 1px solid rgba(255,255,255,0.05); 
+            border-radius: 12px; padding: 10px 14px; display: flex; 
+            justify-content: space-between; align-items: center; cursor: pointer;
+            font-size: 11px; font-weight: 800; transition: 0.2s;
+        }
+        .item-card.selected { border-color: var(--accent); background: rgba(0, 242, 255, 0.1); }
+        
+        .bottom-nav { background: #0f172a; position: fixed; bottom: 0; width: 100%; display: flex; justify-content: space-around; padding: 15px; border-top: 1px solid rgba(255,255,255,0.1); z-index: 100; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; font-size: 10px; color: #64748b; font-weight: 800; cursor: pointer; }
+        .nav-item.active { color: var(--accent); }
+
+        .counter-btn { width: 26px; height: 26px; background: rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+        .section-title { color: var(--accent); font-size: 10px; font-weight: 900; margin: 15px 0 8px 0; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 6px; border-left: 3px solid var(--accent); padding-left: 8px; }
+        
+        .price-badge { font-size: 9px; padding: 2px 6px; border-radius: 4px; background: rgba(0,242,255,0.1); color: var(--accent); }
+    </style>
+</head>
+<body>
+
+    <header class="p-4 border-b border-white/5 sticky top-0 bg-[#020617]/95 backdrop-blur-md z-50 flex justify-between items-center">
+        <span class="font-black tracking-tighter text-xl italic text-white uppercase">REY<span class="text-sky-400">STORE</span></span>
+        <div class="flex items-center gap-2">
+            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            <span class="text-[9px] font-black uppercase tracking-widest text-gray-400">Online</span>
+        </div>
+    </header>
+
+    <main class="p-4 max-w-xl mx-auto">
+        
+        <div id="view-beranda" class="page-view active">
+            <div class="section-title">Katalog Fruit</div>
+            <div class="grid grid-cols-2 gap-2">
+                <div class="item-card" onclick="toggle(this,'Kitsune','65K')"><span>Kitsune</span><span class="text-sky-400">65K</span></div>
+                <div class="item-card" onclick="toggle(this,'Dragon East','300K')"><span>Dragon East</span><span class="text-sky-400">300K</span></div>
+                <div class="item-card" onclick="toggle(this,'Dragon West','350K')"><span>Dragon West</span><span class="text-sky-400">350K</span></div>
+                <div class="item-card" onclick="toggle(this,'Tiger','25K')"><span>Tiger</span><span class="text-sky-400">25K</span></div>
+                <div class="item-card" onclick="toggle(this,'Yeti','25K')"><span>Yeti</span><span class="text-sky-400">25K</span></div>
+                <div class="item-card" onclick="toggle(this,'Gas','20K')"><span>Gas</span><span class="text-sky-400">20K</span></div>
+                <div class="item-card" onclick="toggle(this,'Dough','13K')"><span>Dough</span><span class="text-sky-400">13K</span></div>
+                <div class="item-card" onclick="toggle(this,'T-Rex','11K')"><span>T-Rex</span><span class="text-sky-400">11K</span></div>
+                <div class="item-card" onclick="toggle(this,'Buddha','9K')"><span>Buddha</span><span class="text-sky-400">9K</span></div>
+                <div class="item-card" onclick="toggle(this,'Portal','9K')"><span>Portal</span><span class="text-sky-400">9K</span></div>
+                <div class="item-card" onclick="toggle(this,'Venom','8K')"><span>Venom</span><span class="text-sky-400">8K</span></div>
+                <div class="item-card" onclick="toggle(this,'Mammoth','7K')"><span>Mammoth</span><span class="text-sky-400">7K</span></div>
+                <div class="item-card" onclick="toggle(this,'Spirit','7K')"><span>Spirit</span><span class="text-sky-400">7K</span></div>
+                <div class="item-card" onclick="toggle(this,'Rumble','35K')"><span>Rumble</span><span class="text-sky-400">35K</span></div>
+                <div class="item-card" onclick="toggle(this,'Control','20K')"><span>Control</span><span class="text-sky-400">20K</span></div>
+            </div>
+        </div>
+
+        <div id="view-joki" class="page-view">
+            <div class="section-title">Leveling & Stats</div>
+            <div class="space-y-2 mb-4">
+                <div class="item-card"><span>SEA 1 (7K)</span><div class="flex items-center gap-3 bg-black/40 p-1 rounded-lg"><div class="counter-btn" onclick="upVal('lv','s1',-1)">-</div><span id="s1-v">0</span><div class="counter-btn" onclick="upVal('lv','s1',1)">+</div></div></div>
+                <div class="item-card"><span>SEA 2 (6K)</span><div class="flex items-center gap-3 bg-black/40 p-1 rounded-lg"><div class="counter-btn" onclick="upVal('lv','s2',-1)">-</div><span id="s2-v">0</span><div class="counter-btn" onclick="upVal('lv','s2',1)">+</div></div></div>
+                <div class="item-card"><span>SEA 3 (5K)</span><div class="flex items-center gap-3 bg-black/40 p-1 rounded-lg"><div class="counter-btn" onclick="upVal('lv','s3',-1)">-</div><span id="s3-v">0</span><div class="counter-btn" onclick="upVal('lv','s3',1)">+</div></div></div>
+                <div class="item-card"><span>1000 FRAGMENT (2K)</span><div class="flex items-center gap-3 bg-black/40 p-1 rounded-lg"><div class="counter-btn" onclick="upVal('ms','f1',-1)">-</div><span id="f1-v">0</span><div class="counter-btn" onclick="upVal('ms','f1',1)">+</div></div></div>
+                <div class="item-card"><span>1M BELLY (10K)</span><div class="flex items-center gap-3 bg-black/40 p-1 rounded-lg"><div class="counter-btn" onclick="upVal('ms','b1',-1)">-</div><span id="b1-v">0</span><div class="counter-btn" onclick="upVal('ms','b1',1)">+</div></div></div>
+            </div>
+
+            <div class="section-title">Styles & Fighting</div>
+            <div class="space-y-4 mb-4">
+                <div class="bg-slate-900/50 p-3 rounded-xl border border-white/5">
+                    <div class="text-[10px] font-bold mb-3 text-sky-400 uppercase tracking-tight">Pilih "Ya" kalau sudah ada bahannya, kalau tidak pilih "Tidak" :</div>
+                    
+                    <div class="space-y-3">
+                        <div class="flex flex-col gap-2 border-b border-white/5 pb-2">
+                            <span class="text-[11px] font-black uppercase tracking-widest">GODHUMAN</span>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="pick('Godhuman','20K','Sudah Ada Bahan')" class="item-card" id="btn-gh1"><span>YA (Sudah Ada)</span><span class="price-badge">20K</span></button>
+                                <button onclick="pick('Godhuman','50K','Belum Ada Bahan')" class="item-card" id="btn-gh2"><span>TIDAK (Belum Ada)</span><span class="price-badge">50K</span></button>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2 border-b border-white/5 pb-2">
+                            <span class="text-[11px] font-black uppercase tracking-widest">SHARKMAN KARATE</span>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="pick('Sharkman','25K','Sudah Ada Bahan')" class="item-card" id="btn-sk1"><span>YA (Sudah Ada)</span><span class="price-badge">25K</span></button>
+                                <button onclick="pick('Sharkman','30K','Belum Ada Bahan')" class="item-card" id="btn-sk2"><span>TIDAK (Belum Ada)</span><span class="price-badge">30K</span></button>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2 border-b border-white/5 pb-2">
+                            <span class="text-[11px] font-black uppercase tracking-widest">ELECTRIC CLAW</span>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="pick('E-Claw','20K','Sudah Ada Bahan')" class="item-card" id="btn-ec1"><span>YA (Sudah Ada)</span><span class="price-badge">20K</span></button>
+                                <button onclick="pick('E-Claw','35K','Belum Ada Bahan')" class="item-card" id="btn-ec2"><span>TIDAK (Belum Ada)</span><span class="price-badge">35K</span></button>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2 border-b border-white/5 pb-2">
+                            <span class="text-[11px] font-black uppercase tracking-widest">DRAGON TALON</span>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="pick('Dragon Talon','20K','Sudah Ada Bahan')" class="item-card" id="btn-dt1"><span>YA (Sudah Ada)</span><span class="price-badge">20K</span></button>
+                                <button onclick="pick('Dragon Talon','35K','Belum Ada Bahan')" class="item-card" id="btn-dt2"><span>TIDAK (Belum Ada)</span><span class="price-badge">35K</span></button>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <span class="text-[11px] font-black uppercase tracking-widest">DEATH STEP</span>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="pick('Death Step','15K','Sudah Ada Bahan')" class="item-card" id="btn-ds1"><span>YA (Sudah Ada)</span><span class="price-badge">15K</span></button>
+                                <button onclick="pick('Death Step','20K','Belum Ada Bahan')" class="item-card" id="btn-ds2"><span>TIDAK (Belum Ada)</span><span class="price-badge">20K</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-title">Sword & Items</div>
+            <div class="grid grid-cols-2 gap-2 mb-4">
+                <div class="item-card" onclick="toggle(this,'Yama','35K')"><span>Yama</span><span>35K</span></div>
+                <div class="item-card" onclick="toggle(this,'Tushita','35K')"><span>Tushita</span><span>35K</span></div>
+                <div class="item-card" onclick="toggle(this,'CDK','65K')"><span>CDK</span><span>65K</span></div>
+                <div class="item-card" onclick="toggle(this,'Hallow Scythe','40K')"><span>Hallow Scythe</span><span>40K</span></div>
+                <div class="item-card" onclick="toggle(this,'Mirror Fraktal','20K')"><span>Mirror Fraktal</span><span>20K</span></div>
+                <div class="item-card" onclick="toggle(this,'Blue Gear','15K')"><span>Blue Gear</span><span>15K</span></div>
+                <div class="item-card" onclick="toggle(this,'Dark Fragment','10K')"><span>Dark Frag</span><span>10K</span></div>
+                <div class="item-card" onclick="toggle(this,'Rip Indra','15K')"><span>Rip Indra</span><span>15K</span></div>
+                <div class="item-card" onclick="toggle(this,'Race V4','15K')"><span>Race V4</span><span>15K</span></div>
+                <div class="item-card" onclick="toggle(this,'Insting V2','20K')"><span>Insting V2</span><span>20K</span></div>
+            </div>
+
+            <div class="section-title">Awakening & Key</div>
+            <div class="space-y-2 mb-4">
+                <div class="item-card"><span>AWE SKILL (3K)</span><div class="flex items-center gap-3 bg-black/40 p-1 rounded-lg"><div class="counter-btn" onclick="upVal('aw','a1',-1)">-</div><span id="a1-v">0</span><div class="counter-btn" onclick="upVal('aw','a1',1)">+</div></div></div>
+                <div class="item-card" onclick="toggle(this,'Key Dough','25K')"><span>Key Dough Raid</span><span>25K</span></div>
+            </div>
+        </div>
+
+        <button onclick="checkout()" class="w-full bg-sky-500 mt-10 py-5 rounded-2xl font-black text-sm uppercase shadow-lg shadow-sky-500/30 active:scale-95 transition">Selesaikan Pesanan</button>
+    </main>
+
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="sw('beranda',this)"><i class="fas fa-home text-lg mb-1"></i><span>Beranda</span></div>
+        <div class="nav-item" onclick="sw('joki',this)"><i class="fas fa-gamepad text-lg mb-1"></i><span>Joki</span></div>
+        <div class="nav-item" onclick="alert('Coming Soon!')"><i class="fas fa-shopping-bag text-lg mb-1"></i><span>Beli Akun</span></div>
+    </nav>
+
+    <div id="m" class="fixed inset-0 bg-black/95 hidden z-[1000] p-6 flex items-center justify-center">
+        <div class="bg-white text-black w-full max-w-xs rounded-[32px] p-8 text-center relative shadow-2xl">
+            <h4 class="font-black text-gray-400 text-[10px] tracking-widest mb-1">TOTAL BAYAR</h4>
+            <p id="t" class="text-3xl font-black text-sky-600 mb-6">Rp 0</p>
+            <div class="bg-gray-50 p-2 rounded-2xl mb-6 border-2 border-gray-100 shadow-inner"><img src="https://i.ibb.co.com/gZDV6X7m/IMG-20260320-WA0004.jpg" class="w-full rounded-xl" alt="QRIS"></div>
+            <button onclick="wa()" class="w-full bg-green-500 text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-green-500/20"><i class="fab fa-whatsapp text-xl"></i> Konfirmasi ke WA</button>
+            <button onclick="document.getElementById('m').classList.add('hidden')" class="mt-4 text-[10px] text-gray-400 font-bold uppercase tracking-widest">Kembali</button>
+        </div>
+    </div>
+
+    <script>
+        let sel = []; let tot = 0;
+        let pStyles = {};
+        let lv = { s1: {q:0, p:7000}, s2: {q:0, p:6000}, s3: {q:0, p:5000} };
+        let ms = { f1: {q:0, p:2000, n:'Fragment'}, b1: {q:0, p:10000, n:'Belly'} };
+        let aw = { a1: {q:0, p:3000, n:'Awake Skill'} };
+
+        function sw(t, e) {
+            document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active'));
+            document.getElementById('view-' + t).classList.add('active');
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            e.classList.add('active');
+        }
+
+        function upVal(grp, id, v) {
+            let target = grp === 'lv' ? lv : (grp === 'ms' ? ms : aw);
+            target[id].q = Math.max(0, target[id].q + v);
+            document.getElementById(id + '-v').innerText = target[id].q;
+        }
+
+        function pick(name, price, condition) {
+            let pVal = parseInt(price.replace('K','000'));
+            if(pStyles[name]) tot -= pStyles[name].price;
+            
+            if(pStyles[name] && pStyles[name].cond === condition) {
+                delete pStyles[name];
+                event.currentTarget.classList.remove('selected');
+            } else {
+                pStyles[name] = { price: pVal, cond: condition };
+                tot += pVal;
+                let prefix = name === 'Godhuman' ? 'gh' : (name === 'Sharkman' ? 'sk' : (name === 'E-Claw' ? 'ec' : (name === 'Dragon Talon' ? 'dt' : 'ds')));
+                document.getElementById('btn-'+prefix+'1').classList.remove('selected');
+                document.getElementById('btn-'+prefix+'2').classList.remove('selected');
+                event.currentTarget.classList.add('selected');
+            }
+        }
+
+        function toggle(e, n, p) {
+            e.classList.toggle('selected');
+            let pr = parseInt(p.replace('K','000'));
+            if(e.classList.contains('selected')) { sel.push(n + " ("+p+")"); tot += pr; }
+            else { sel = sel.filter(i => !i.startsWith(n)); tot -= pr; }
+        }
+
+        function checkout() {
+            let lt = (lv.s1.q*lv.s1.p) + (lv.s2.q*lv.s2.p) + (lv.s3.q*lv.s3.p);
+            let mt = (ms.f1.q*ms.f1.p) + (ms.b1.q*ms.b1.p);
+            let at = (aw.a1.q*aw.a1.p);
+            let gt = tot + lt + mt + at;
+            if(gt === 0 && sel.length === 0) return alert("Pilih pesanan dulu!");
+            document.getElementById('t').innerText = "Rp " + gt.toLocaleString('id-ID');
+            document.getElementById('m').classList.remove('hidden');
+        }
+
+        function wa() {
+            let lt = (lv.s1.q*lv.s1.p) + (lv.s2.q*lv.s2.p) + (lv.s3.q*lv.s3.p);
+            let mt = (ms.f1.q*ms.f1.p) + (ms.b1.q*ms.b1.p);
+            let at = (aw.a1.q*aw.a1.p);
+            let gt = tot + lt + mt + at;
+            
+            let dList = [];
+            Object.keys(pStyles).forEach(k => dList.push(`${k}:${pStyles[k].cond}`));
+            if(lv.s1.q>0) dList.push(`S1:${lv.s1.q*100}lvl`);
+            if(lv.s2.q>0) dList.push(`S2:${lv.s2.q*100}lvl`);
+            if(lv.s3.q>0) dList.push(`S3:${lv.s3.q*100}lvl`);
+            if(ms.f1.q>0) dList.push(`Frag:${ms.f1.q*1000}`);
+            if(ms.b1.q>0) dList.push(`Belly:${ms.b1.q}jt`);
+            if(aw.a1.q>0) dList.push(`Awake:${aw.a1.q}Skill`);
+
+            let msg = `Halo REYSTORE! 🫡%0A%0ASaya pesan:%0A- Item: ${sel.join(", ") || "-"}${dList.length > 0 ? "%0A- Joki: " + dList.join(", ") : ""}%0A%0ATotal Bayar: Rp ${gt.toLocaleString()}`;
+            window.open(`https://wa.me/6281334880912?text=${msg}`);
+        }
+    </script>
+</body>
+</html>
